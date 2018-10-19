@@ -21,8 +21,7 @@ namespace CodeShopWarehouse.Business.Test
             }
             catch (Exception ex)
             {
-                Assert.AreEqual("Unable to retrieve orders!", ex.Message);
-                return;
+                Assert.Fail("You were unable to get orders!");
             }
         }
         [TestMethod]

@@ -32,18 +32,17 @@ namespace CodeShopWarehouse.Web.Controllers
         {
             return Ok(_ordersService.GetOrderById(id));
         }
-/*
-        [HttpPost()]
-        public IActionResult CreateOrder(Order o)
+        [HttpPost("create")]
+        public IActionResult CreateOrder([FromBody]Order o)
         {
-
+            _ordersService.CreateOrder(o);
+            return Ok();
         }
-
-        [HttpPost()]
-        public IActionResult ProcessOrder(Order o)
+        [HttpPost("process")]
+        public IActionResult ProcessOrder([FromBody]Order o)
         {
-
+            _ordersService.ProcessOrder(o);
+            return Ok();
         }
-*/
     }
 }
