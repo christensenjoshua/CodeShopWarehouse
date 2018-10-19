@@ -36,7 +36,15 @@ namespace CodeShopWarehouse.Business
 
         public void ProcessOrder(Order o)
         {
-            _ordersRepo.ProcessOrder(o);
+            Order dbOrder = _ordersRepo.GetOrderById(o.Id);
+            if(dbOrder.ProcessedAt == null)
+            {
+                _ordersRepo.ProcessOrder(o);
+            }
+            else
+            {
+                throw new Exception("This order is already processed!");
+            }
         }
     }
 }

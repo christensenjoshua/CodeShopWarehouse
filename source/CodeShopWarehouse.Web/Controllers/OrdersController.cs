@@ -32,7 +32,7 @@ namespace CodeShopWarehouse.Web.Controllers
         {
             return Ok(_ordersService.GetOrderById(id));
         }
-
+/*
         [HttpPost()]
         public IActionResult CreateOrder(Order o)
         {
@@ -44,5 +44,6 @@ namespace CodeShopWarehouse.Web.Controllers
         {
 
         }
+*/
     }
 }
