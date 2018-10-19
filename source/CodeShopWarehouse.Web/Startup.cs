@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
+using CodeShopWarehouse.Business;
+using CodeShopWarehouse.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -32,6 +35,9 @@ namespace CodeShopWarehouse.Web
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddTransient<OrdersService>();
+            services.AddTransient<IOrdersRepo, OrdersRepo>();
+            services.AddTransient<IDbConnection>(garbage => null);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
