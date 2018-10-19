@@ -12,7 +12,7 @@ namespace CodeShopWarehouse.Data
         IEnumerable<Order> GetUnProcessedOrders();
         IEnumerable<Order> GetAllOrders();
         void CreateOrder(Order o);
-        void ProcessOrder(Order o);
+        Order ProcessOrder(Order o);
     }
     public class OrdersRepo : IOrdersRepo
     {
@@ -59,9 +59,10 @@ namespace CodeShopWarehouse.Data
             Console.WriteLine($"I created order {o.Name}!");
         }
 
-        public void ProcessOrder(Order o)
+        public Order ProcessOrder(Order o)
         {
-            Console.WriteLine($"I updated {o.Name}!");
+            o.ProcessedAt = DateTimeOffset.Now;
+            return o;
         }
     }
 

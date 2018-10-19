@@ -34,12 +34,12 @@ namespace CodeShopWarehouse.Business
             _ordersRepo.CreateOrder(o);
         }
 
-        public void ProcessOrder(Order o)
+        public Order ProcessOrder(Order o)
         {
             Order dbOrder = _ordersRepo.GetOrderById(o.Id);
             if(dbOrder.ProcessedAt == null)
             {
-                _ordersRepo.ProcessOrder(o);
+                return _ordersRepo.ProcessOrder(o);
             }
             else
             {

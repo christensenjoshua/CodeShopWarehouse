@@ -41,8 +41,7 @@ namespace CodeShopWarehouse.Web.Controllers
         [HttpPost("process")]
         public IActionResult ProcessOrder([FromBody]Order o)
         {
-            _ordersService.ProcessOrder(o);
-            return Ok();
+            return Ok(_ordersService.ProcessOrder(o));
         }
     }
 }
