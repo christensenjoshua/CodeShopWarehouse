@@ -33,22 +33,16 @@ namespace CodeShopWarehouse.Web.Controllers
             return RedirectToAction("Index");
         }
         // GET: OrdersView/Details/5
-        //public async Task<IActionResult> Details(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
+        public IActionResult Details(int id)
+        {
+            Order order = _service.GetOrderById(id);
+            if (order == null)
+            {
+                return NotFound();
+            }
 
-        //    var order = await _context.Order
-        //        .FirstOrDefaultAsync(m => m.Id == id);
-        //    if (order == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return View(order);
-        //}
+            return View(order);
+        }
 
         // GET: OrdersView/Create
         public IActionResult Create()

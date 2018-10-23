@@ -51,8 +51,8 @@
                        <input hidden value="@item.Id" name="id" />
                        <button type="submit">Process</button>
                    }
-                   // <a asp-controller="OrdersView" asp-action="Process" asp-route-id="@item.Id">Details</a>
                 }
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a>
             </td>
         </tr>
 }
