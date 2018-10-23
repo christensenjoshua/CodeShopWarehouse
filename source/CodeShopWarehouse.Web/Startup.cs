@@ -11,6 +11,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+using CodeShopWarehouse.Web.Models;
+using CodeShopWarehouse.Entities.Models;
 
 namespace CodeShopWarehouse.Web
 {
@@ -36,8 +39,12 @@ namespace CodeShopWarehouse.Web
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddTransient<OrdersService>();
+            
             services.AddTransient<IOrdersRepo, OrdersRepo>();
             services.AddTransient<IDbConnection>(garbage => null);
+
+            services.AddDbContext<CodeShopWarehouseWebContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("CodeShopWarehouseWebContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,16 +58,17 @@ namespace CodeShopWarehouse.Web
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-
-            app.UseStaticFiles();
-            app.UseCookiePolicy();
-
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=OrdersView}/{action=Index}/{id?}");
             });
+
+            app.UseCookiePolicy();
+            app.UseStaticFiles();
+            app.UseDefaultFiles();
+
         }
     }
 }

@@ -15,33 +15,13 @@ namespace CodeShopWarehouse.Data
     }
     public class OrdersRepo : IOrdersRepo
     {
-        private List<Order> allOrders = new List<Order>()
-        {
-            new Order {
-                Id = 1,
-                Name = "Order number One!!",
-                QuantityMod = -1,
-                CreatedAt = DateTimeOffset.Now.AddDays(-7),
-                ProcessedAt = DateTimeOffset.Now
-            },
-            new Order {
-                Id = 2,
-                Name = "Two! This is a Name!",
-                QuantityMod = 5,
-                CreatedAt = DateTimeOffset.Now.AddDays(-7)
-            },
-            new Order {
-                Id = 3,
-                Name = "Three ! This is a Name!",
-                QuantityMod = -10,
-                CreatedAt = DateTimeOffset.Now.AddDays(-7)
-            },
-        };
+        private List<Order> allOrders;
         private readonly IDbConnection _db;
 
         public OrdersRepo(IDbConnection db)
         {
             _db = db;
+            allOrders = FakeData.AllOrders;
         }
 
         public Order GetOrderById(int id)

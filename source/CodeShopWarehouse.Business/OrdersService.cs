@@ -38,15 +38,19 @@ namespace CodeShopWarehouse.Business
             return unprocessed;
         }
 
+        public void ProcessOrder(int id)
+        {
+            ProcessOrder(GetOrderById(id));
+        }
+
         public void CreateOrder(Order o)
         {
             _ordersRepo.CreateOrder(o);
         }
 
-        public Order ProcessOrder(Order o)
+        private Order ProcessOrder(Order o)
         {
-            Order dbOrder = _ordersRepo.GetOrderById(o.Id);
-            if(dbOrder.ProcessedAt == null)
+            if(o.ProcessedAt == null)
             {
                 return _ordersRepo.ProcessOrder(o);
             }

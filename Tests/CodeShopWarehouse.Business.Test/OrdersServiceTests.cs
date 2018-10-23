@@ -37,7 +37,7 @@ namespace CodeShopWarehouse.Business.Test
             var ordersService = new OrdersService(mockOrdersRepo);
             try
             {
-                ordersService.ProcessOrder(aClosedOrder);
+                ordersService.ProcessOrder(aClosedOrder.Id);
             }
             catch(Exception ex)
             {
@@ -59,7 +59,7 @@ namespace CodeShopWarehouse.Business.Test
             var ordersService = new OrdersService(mockOrdersRepo);
             try
             {
-                ordersService.ProcessOrder(anOpenOrder);
+                ordersService.ProcessOrder(anOpenOrder.Id);
             }
             catch(Exception ex)
             {
