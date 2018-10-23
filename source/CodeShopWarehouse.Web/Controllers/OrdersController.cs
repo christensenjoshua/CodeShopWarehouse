@@ -22,9 +22,15 @@ namespace CodeShopWarehouse.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetTickets()
+        public IActionResult GetOrders()
         {
             return Ok(_ordersService.GetAllOrders());
+        }
+
+        [HttpGet("&unprocessed")]
+        public IActionResult GetUnProcessedOrders()
+        {
+            return Ok(_ordersService.GetUnProcessedOrders());
         }
 
         [HttpGet("{id}")]

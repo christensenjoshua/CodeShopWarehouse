@@ -26,7 +26,16 @@ namespace CodeShopWarehouse.Business
 
         public IEnumerable<Order> GetUnProcessedOrders()
         {
-            return _ordersRepo.GetUnProcessedOrders();
+            IEnumerable<Order> allOrders = _ordersRepo.GetAllOrders();
+            List<Order> unprocessed = new List<Order>();
+            foreach(Order item in allOrders)
+            {
+                if(item.ProcessedAt == null)
+                {
+                    unprocessed.Add(item);
+                }
+            }
+            return unprocessed;
         }
 
         public void CreateOrder(Order o)
