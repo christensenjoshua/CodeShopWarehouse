@@ -37,6 +37,8 @@ namespace CodeShopWarehouse.Data
 
         public void CreateOrder(Order o)
         {
+            int anId = allOrders.Count + 1;
+            o.Id = anId;
             allOrders.Add(o);
         }
 
